@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Babbar Jewellers | Premium Jewellery</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #070604;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 20px 7%;
+
+      background: rgba(5, 4, 2, 0.75);
+      backdrop-filter: blur(12px);
+
+      border-bottom: 1px solid rgba(212, 164, 65, 0.2);
+    }
+
+    .logo {
+      font-family: Georgia, serif;
+      font-size: 26px;
+      font-weight: bold;
+      color: #e7bd63;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #e7bd63;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      padding: 130px 8% 70px;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 75% 45%,
+          rgba(174, 126, 35, 0.30),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(255, 215, 120, 0.08),
+          transparent 30%
+        ),
+        #070604;
+    }
+
+    .hero-content {
+      width: 50%;
+      z-index: 5;
+    }
+
+    .small-title {
+      color: #d9ae54;
+      letter-spacing: 5px;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(50px, 7vw, 95px);
+      line-height: 0.95;
+
+      background: linear-gradient(
+        120deg,
+        #fff4c9,
+        #d8a83e,
+        #fff1b5
+      );
+
+      -webkit-background-clip: text;
+      color: transparent;
+
+      margin-bottom: 25px;
+    }
+
+    .hero p {
+      color: #b8b1a2;
+      line-height: 1.8;
+      max-width: 530px;
+      font-size: 16px;
+    }
+
+    .hero-buttons {
+      margin-top: 35px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .gold-btn {
+      background: linear-gradient(135deg, #f5d47c, #a97019);
+      color: #100c04;
+    }
+
+    .gold-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(226, 177, 70, 0.3);
+    }
+
+    .outline-btn {
+      border: 1px solid #c89c43;
+      color: #e4bd68;
+    }
+
+    .outline-btn:hover {
+      background: #c89c43;
+      color: #090705;
+    }
+
+    /* ================= 3D RING ================= */
+
+    .jewellery-scene {
+      position: absolute;
+      right: 5%;
+      width: 45%;
+      height: 500px;
+
+      perspective: 1000px;
+    }
+
+    .ring {
+      position: absolute;
+
+      width: 330px;
+      height: 330px;
+
+      border: 32px solid #d1a344;
+      border-radius: 50%;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%)
+        rotateX(65deg)
+        rotateZ(-15deg);
+
+      box-shadow:
+        inset 0 0 20px #fff0a5,
+        0 0 35px rgba(218, 170, 69, 0.3),
+        0 30px 60px #000;
+
+      animation: ringFloat 5s ease-in-out infinite;
+    }
+
+    .diamond {
+      position: absolute;
+
+      width: 105px;
+      height: 105px;
+
+      left: 50%;
+      top: 4%;
+
+      transform:
+        translateX(-50%)
+        rotate(45deg);
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #bde5ff,
+          #66849b
+        );
+
+      clip-path: polygon(
+        50% 0,
+        90% 25%,
+        100% 50%,
+        75% 90%,
+        50% 100%,
+        25% 90%,
+        0 50%,
+        10% 25%
+      );
+
+      filter:
+        drop-shadow(0 0 20px white)
+        drop-shadow(0 0 40px #e8d7a2);
+
+      animation: diamondGlow 2s infinite alternate;
+    }
+
+    @keyframes ringFloat {
+      0%, 100% {
+        transform:
+          translate(-50%, -50%)
+          rotateX(65deg)
+          rotateZ(-15deg)
+          translateY(0);
+      }
+
+      50% {
+        transform:
+          translate(-50%, -50%)
+          rotateX(65deg)
+          rotateZ(15deg)
+          translateY(-25px);
+      }
+    }
+
+    @keyframes diamondGlow {
+      from {
+        filter:
+          drop-shadow(0 0 10px white)
+          drop-shadow(0 0 20px #e8d7a2);
+      }
+
+      to {
+        filter:
+          drop-shadow(0 0 25px white)
+          drop-shadow(0 0 60px #fff2b0);
+      }
+    }
+
+    /* ================= STARS ================= */
+
+    .star {
+      position: absolute;
+
+      width: 4px;
+      height: 4px;
+
+      background: #fff3bd;
+      border-radius: 50%;
+
+      box-shadow: 0 0 15px #fff3bd;
+
+      animation: sparkle 2s infinite alternate;
+    }
+
+    .star1 {
+      top: 20%;
+      right: 15%;
+    }
+
+    .star2 {
+      top: 60%;
+      right: 35%;
+      animation-delay: 0.5s;
+    }
+
+    .star3 {
+      top: 30%;
+      right: 45%;
+      animation-delay: 1s;
+    }
+
+    .star4 {
+      top: 75%;
+      right: 10%;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes sparkle {
+      from {
+        opacity: 0.2;
+        transform: scale(0.5);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+    }
+
+    /* ================= COLLECTION ================= */
+
+    .section {
+      padding: 100px 8%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title span {
+      color: #d8aa4c;
+      letter-spacing: 4px;
+      font-size: 12px;
+    }
+
+    .section-title h2 {
+      font-family: Georgia, serif;
+      font-size: 48px;
+      color: #f2d48a;
+      margin-top: 12px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 25px;
+    }
+
+    .product {
+      background:
+        linear-gradient(
+          145deg,
+          #19140c,
+          #0c0a07
+        );
+
+      border: 1px solid #3f3019;
+      border-radius: 22px;
+
+      overflow: hidden;
+
+      transition: 0.4s;
+
+      transform-style: preserve-3d;
+    }
+
+    .product:hover {
+      transform:
+        translateY(-12px)
+        rotateX(3deg)
+        rotateY(-3deg);
+
+      border-color: #cda650;
+
+      box-shadow:
+        0 20px 50px rgba(213, 166, 69, 0.15);
+    }
+
+    .product-image {
+      height: 280px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        radial-gradient(
+          circle,
+          #695023,
+          #1d1509 45%,
+          #090705
+        );
+
+      position: relative;
+    }
+
+    /* Necklace */
+
+    .necklace {
+      width: 170px;
+      height: 190px;
+
+      border: 6px solid #d5a849;
+
+      border-top-color: transparent;
+
+      border-radius: 50%;
+
+      transform: rotateX(25deg);
+
+      box-shadow:
+        0 0 20px rgba(238, 202, 110, 0.3);
+    }
+
+    /* Ring */
+
+    .product-ring {
+      width: 140px;
+      height: 140px;
+
+      border: 20px solid #d4a642;
+
+      border-radius: 50%;
+
+      transform:
+        rotateX(65deg)
+        rotateZ(-20deg);
+    }
+
+    /* Bracelet */
+
+    .bracelet {
+      width: 220px;
+      height: 120px;
+
+      border: 18px solid #d3a344;
+
+      border-radius: 50%;
+
+      transform:
+        rotateX(60deg)
+        rotateZ(-10deg);
+    }
+
+    .product-info {
+      padding: 24px;
+    }
+
+    .product-info h3 {
+      font-family: Georgia, serif;
+      font-size: 23px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      color: #e0b85e;
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    /* ================= ABOUT ================= */
+
+    .about {
+      background:
+        linear-gradient(
+          135deg,
+          #171108,
+          #0c0905
+        );
+
+      border-radius: 30px;
+
+      padding: 70px 10%;
+
+      text-align: center;
+
+      border: 1px solid #392b17;
+    }
+
+    .about h2 {
+      color: #e6bd68;
+      font-family: Georgia, serif;
+      font-size: 45px;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      max-width: 750px;
+      margin: auto;
+
+      color: #b7afa0;
+
+      line-height: 1.9;
+    }
+
+    /* ================= CONTACT ================= */
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-family: Georgia, serif;
+      font-size: 45px;
+      color: #e6bd68;
+      margin-bottom: 15px;
+    }
+
+    .contact p {
+      color: #aaa293;
+      margin-bottom: 30px;
+    }
+
+    /* ================= WHATSAPP ================= */
+
+    .whatsapp {
+      position: fixed;
+
+      right: 22px;
+      bottom: 22px;
+
+      width: 60px;
+      height: 60px;
+
+      border-radius: 50%;
+
+      background: #25d366;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: white;
+
+      font-size: 27px;
+
+      text-decoration: none;
+
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.4);
+
+      z-index: 1000;
+
+      transition: 0.3s;
+    }
+
+    .whatsapp:hover {
+      transform: scale(1.1);
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      text-align: center;
+
+      padding: 35px;
+
+      border-top: 1px solid #2d2315;
+
+      color: #766e61;
+
+      font-size: 13px;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 800px) {
+
+      nav {
+        padding: 17px 5%;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero {
+        min-height: 900px;
+        padding: 120px 7% 40px;
+        align-items: flex-start;
+      }
+
+      .hero-content {
+        width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 58px;
+      }
+
+      .jewellery-scene {
+        width: 100%;
+        height: 360px;
+
+        right: 0;
+        bottom: 30px;
+        top: auto;
+      }
+
+      .ring {
+        width: 260px;
+        height: 260px;
+        border-width: 25px;
+      }
+
+      .diamond {
+        width: 80px;
+        height: 80px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 70px 6%;
+      }
+
+      .section-title h2 {
+        font-size: 38px;
+      }
+
+      .about h2,
+      .contact h2 {
+        font-size: 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+
+  <nav>
+
+    <div class="logo">
+      BABBAR JEWELLERS
+    </div>
+
+    <ul>
+      <li>
+        <a href="#home">Home</a>
+      </li>
+
+      <li>
+        <a href="#collection">Collection</a>
+      </li>
+
+      <li>
+        <a href="#about">About</a>
+      </li>
+
+      <li>
+        <a href="#contact">Contact</a>
+      </li>
+    </ul>
+
+  </nav>
+
+
+  <!-- ================= HERO ================= -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="small-title">
+        EST. 1998 · FINE JEWELLERY
+      </div>
+
+      <h1>
+        BABBAR<br>
+        JEWELLERS
+      </h1>
+
+      <p>
+        Elegance crafted for every occasion.
+        Discover timeless gold, diamond and
+        premium jewellery designed to become
+        part of your story.
+      </p>
+
+      <div class="hero-buttons">
+
+        <a
+          href="#collection"
+          class="btn gold-btn">
+          Explore Collection
+        </a>
+
+        <a
+          href="#contact"
+          class="btn outline-btn">
+          Visit Store
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- 3D Jewellery -->
+
+    <div class="jewellery-scene">
+
+      <div class="ring"></div>
+
+      <div class="diamond"></div>
+
+      <div class="star star1"></div>
+      <div class="star star2"></div>
+      <div class="star star3"></div>
+      <div class="star star4"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= COLLECTION ================= -->
+
+  <section
+    class="section"
+    id="collection">
+
+    <div class="section-title">
+
+      <span>
+        OUR COLLECTION
+      </span>
+
+      <h2>
+        Signature Jewellery
+      </h2>
+
+    </div>
+
+
+    <div class="products">
+
+
+      <!-- Necklace -->
+
+      <div class="product">
+
+        <div class="product-image">
+
+          <div class="necklace"></div>
+
+        </div>
+
+        <div class="product-info">
+
+          <h3>
+            Royal Gold Necklace
+          </h3>
+
+          <div class="price">
+            Starting ₹1,49,999
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Ring -->
+
+      <div class="product">
+
+        <div class="product-image">
+
+          <div class="product-ring"></div>
+
+        </div>
+
+        <div class="product-info">
+
+          <h3>
+            Diamond Ring
+          </h3>
+
+          <div class="price">
+            Starting ₹89,999
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Bracelet -->
+
+      <div class="product">
+
+        <div class="product-image">
+
+          <div class="bracelet"></div>
+
+        </div>
+
+        <div class="product-info">
+
+          <h3>
+            Premium Gold Bracelet
+          </h3>
+
+          <div class="price">
+            Starting ₹64,999
+          </div>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= ABOUT ================= -->
+
+  <section
+    class="section"
+    id="about">
+
+    <div class="about">
+
+      <h2>
+        Crafted For Your Story
+      </h2>
+
+      <p>
+        At Babbar Jewellers, every piece is
+        created to celebrate life's special
+        moments. From traditional gold
+        jewellery to contemporary diamond
+        designs, discover craftsmanship,
+        elegance and timeless beauty.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= CONTACT ================= -->
+
+  <section
+    class="section contact"
+    id="contact">
+
+    <h2>
+      Visit Babbar Jewellers
+    </h2>
+
+    <p>
+      Come and discover your perfect piece
+      with us.
+    </p>
+
+    <!-- Yahan apna actual phone number daalna -->
+
+    <a
+      href="tel:+919800000000"
+      class="btn gold-btn">
+
+      Call Now
+
+    </a>
+
+  </section>
+
+
+  <!-- ================= WHATSAPP ================= -->
+
+  <!-- +919800000000 ko apne WhatsApp number se replace karo -->
+
+  <a
+    class="whatsapp"
+    href="https://wa.me/919800000000"
+    target="_blank"
+    aria-label="WhatsApp">
+
+    ☎
+
+  </a>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    © 2026 Babbar Jewellers.
+    All Rights Reserved.
+
+  </footer>
+
+
+  <!-- ================= 3D MOUSE EFFECT ================= -->
+
+  <script>
+
+    const products =
+      document.querySelectorAll(".product");
+
+    products.forEach(product => {
+
+      product.addEventListener(
+        "mousemove",
+        function(event) {
+
+          if (window.innerWidth < 800) return;
+
+          const rect =
+            product.getBoundingClientRect();
+
+          const x =
+            event.clientX - rect.left;
+
+          const y =
+            event.clientY - rect.top;
+
+          const centerX =
+            rect.width / 2;
+
+          const centerY =
+            rect.height / 2;
+
+          const rotateX =
+            ((y - centerY) / centerY) * -5;
+
+          const rotateY =
+            ((x - centerX) / centerX) * 5;
+
+          product.style.transform =
+            `translateY(-10px)
+             rotateX(${rotateX}deg)
+             rotateY(${rotateY}deg)`;
+
+        }
+      );
+
+
+      product.addEventListener(
+        "mouseleave",
+        function() {
+
+          product.style.transform =
+            "translateY(0) rotateX(0) rotateY(0)";
+
+        }
+      );
+
+    });
+
+  </script>
+
+</body>
+</html>
